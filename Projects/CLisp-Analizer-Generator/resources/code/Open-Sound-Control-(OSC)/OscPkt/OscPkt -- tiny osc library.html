@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+  <head>
+    <title>OscPkt -- tiny osc library</title>
+    <style type="text/css">
+      body {
+      margin: 20 auto 0 auto;
+      width: 50em;
+      background-color: #ffffff;
+      color: black;
+      font-family: Helvetica, Verdana, Arial, sans-serif;
+      }
+      a { text-decoration: none;
+      font-weight: bold;
+      background: transparent;
+      border-right: 1px dashed white; border-left: 1px dashed white;
+      color: #05F; 
+      }
+      a:hover {
+      background-color: #DFD;
+      border-color: #8F8;
+      border-style:dotted;
+      border-width: 1px;
+      color: #000000;
+      }
+      h1,h2,h3 { 
+      color: #080;
+      }
+    </style>
+  </head>
+
+  <body>
+    <img src="http://totoz.eu/gif/mcclure.gif" style="float:right"/>
+    <h1>Ultra minimalistic OSC library</h1>
+
+    <h2>The story</h2>
+    <p>OscPkt is a very minimalistic <a href="http://opensoundcontrol.org/introduction-osc">OSC</a> library. What I wanted to achieve with this lib:
+    <ul>
+      <li>make it at small as possible. It consists of one header file,  <a href="oscpkt.hh">oscpkt.hh</a>, which implements pretty much all of the OSC specification, even the pattern matching stuff (the wildcards etc).</li>
+      <li>use only dumb, basic, c++. No boost stuff and no exceptions.</li>
+      <li>make it robust with respect to malformed packets, and handle errors cleanly.</li>
+      <li>make it portable on linux/macos/win32.
+      <li>release it under the zlib license, which basically allows you to do whatever you want except suing me.</li>
+    </ul>
+    </p>
+
+    <p>
+      Other OSC libraries: <a href="http://liblo.sourceforge.net/">liblo</a> is the most well-known. This is a
+      feature-complete osc library, written in C and LGPL licensed. 
+      <br/>
+      Another well-known c++ OSC library is <a href="http://www.audiomulch.com/~rossb/code/oscpack/">oscpack</a>, BSD licensed,
+      not feature complete (no pattern matching), with portable udp transport,
+      but still a bit large for my taste (and it throws exceptions).
+    </p>
+    <h2>The code</h2>
+    <p>
+    Here is the code, approximately 650 lines of boring c++, in a single header file: <a href="html/oscpkt_8hh_source.html">oscpkt/oscpkt.hh</a> . It basically provides 3 classes: a class for reading/writing OSC messages, a packet reader for parsing incoming packets, and a packet writer for filling outgoing packets.
+    </p>
+    <p>As a bonus, I also provide a header file for sending/receiving these packets over UDP: <a href="html/udp_8hh_source.html">oscpkt/udp.hh</a>. Very basic, but works on linux/macos/win32.
+    </p>
+    <p>And finally a test file <a href="html/oscpkt__test_8cc-example.html">oscpkt/oscpkt_test.cc</a> with a bit of fuzzing, and a very basic demo file <a href="html/oscpkt__demo_8cc-example.html">oscpkt/oscpkt_demo.cc</a>.
+    </p>
+
+    <p>All these four files are gathered into a single, shiny, <a href="oscpkt-1.2.tar.gz">tar.gz archive</a> (the only changes with respect to version 1.0 a a few compil fixes for mingw and warning fixes).</p>
+
+    <h2>The doc</h2>
+    Yay there is even a doxygen generated doc, mostly useless and a bit redundant with this page: <a href="html">doxygen doc here<a/>.
+    <hr>
+    <address><a href="mailto:gruntthepeon@free.fr"></a></address>
+<!-- hhmts start -->
+Last modified: 2015/01/31
+<!-- hhmts end -->
+  </body>
+</html>

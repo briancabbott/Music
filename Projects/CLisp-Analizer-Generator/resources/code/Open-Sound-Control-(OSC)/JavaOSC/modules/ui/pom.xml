@@ -1,0 +1,83 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<properties>
+		<project.mainClass>${project.packageName}.ui.Main</project.mainClass>
+	</properties>
+
+	<parent>
+		<groupId>com.illposed.osc</groupId>
+		<artifactId>javaosc-parent</artifactId>
+		<version>0.8-SNAPSHOT</version>
+		<relativePath>../parent</relativePath>
+	</parent>
+
+	<artifactId>javaosc-ui</artifactId>
+	<version>0.8-SNAPSHOT</version>
+
+	<packaging>jar</packaging>
+
+	<name>JavaOSC-UI</name>
+	<description>An Open Sound Control library implementation in Java - UI</description>
+
+	<build>
+		<defaultGoal>package</defaultGoal>
+
+		<plugins>
+			<!--
+				Modifies the jars manifest file.
+				Here we add the Main-Class attribute, for example.
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<addClasspath>true</addClasspath>
+							<classpathPrefix>dependency</classpathPrefix>
+							<packageName>${project.packageName}</packageName>
+							<mainClass>${project.mainClass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<!--
+				This generates an extra jar file that can be run standalone.
+			-->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-assembly-plugin</artifactId>
+				<configuration>
+					<descriptorRefs>
+						<descriptorRef>jar-with-dependencies</descriptorRef>
+					</descriptorRefs>
+					<archive>
+						<manifest>
+							<mainClass>${project.mainClass}</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
+			</plugin>
+
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<configuration>
+					<mainClass>${project.mainClass}</mainClass>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+	<dependencies>
+		<dependency>
+			<groupId>com.illposed.osc</groupId>
+			<artifactId>javaosc-core</artifactId>
+			<version>0.8-SNAPSHOT</version>
+		</dependency>
+	</dependencies>
+
+</project>
+

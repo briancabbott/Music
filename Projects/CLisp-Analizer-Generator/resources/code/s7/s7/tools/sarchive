@@ -1,0 +1,89 @@
+#!/bin/csh -f
+
+set s7dir = /user/b/bil/s7
+set s7webdir = /user/b/bil/s7/s7webserver
+set snddir = /usr/ccrma/lisp/src/snd
+set pixdir = /usr/ccrma/lisp/src/snd/pix
+set sndtools = /usr/ccrma/lisp/src/snd/tools
+set sndweb = /usr/ccrma/lisp/src/snd/s7webserver
+set curdir = $cwd
+set curtools = $cwd/tools
+set curweb = $cwd/s7webserver
+
+date > $curdir/hi
+echo ' ' >> $curdir/hi
+
+chdir s7dir
+foreach file (*.h *.c *.html *.scm gdbinit)
+  if (-e $curdir/$file) then
+    find $curdir/$file -newer $s7dir/$file -exec echo ' updating ' $file \;
+    find $curdir/$file -newer $s7dir/$file -exec cp $curdir/$file $s7dir \;
+  endif
+end
+
+chdir snddir
+foreach file (*.h *.c *.cl *.el *.clm *.fsm *.fs *.js *.html makefile.* make.* *.in *.scm *.lisp *.Snd snd.1 configure.ac *.rb *.m4 config.guess config.sub NEWS *.tex rt-DotEmacs DotEmacs *.f music5-examples)
+  if (-e $curdir/$file) then
+    diff -bcw $curdir/$file $snddir/$file >> $curdir/hi
+    find $curdir/$file -newer $snddir/$file -exec echo ' updating ' $file \;
+    find $curdir/$file -newer $snddir/$file -exec cp $curdir/$file $snddir \;
+  endif
+end
+
+chdir pixdir
+foreach file (*.png)
+  if (-e $curdir/pix/$file) then
+    find $curdir/pix/$file -newer $pixdir/$file -exec echo ' updating ' $file \;
+    find $curdir/pix/$file -newer $pixdir/$file -exec cp $curdir/pix/$file $pixdir \;
+  endif
+end
+
+chdir curtools
+foreach file (*)
+  if (-e $curdir/$file) then
+    diff -bcw $curdir/$file $curtools/$file >> $curdir/hi
+    find $curdir/$file -newer $curtools/$file -exec echo ' updating ' tools/$file \;
+    find $curdir/$file -newer $curtools/$file -exec cp $curdir/$file $curtools \;
+  endif
+end
+
+chdir sndtools
+foreach file (*)
+  if (-e $curtools/$file) then
+    diff -bcw $curtools/$file $sndtools/$file >> $curdir/hi
+    find $curtools/$file -newer $sndtools/$file -exec echo ' updating ' tools/$file \;
+    find $curtools/$file -newer $sndtools/$file -exec cp $curtools/$file $sndtools \;
+  endif
+end
+
+chdir curweb
+foreach file (*)
+  if (-e $curdir/$file) then
+    diff -bcw $curdir/$file $curweb/$file >> $curdir/hi
+    find $curdir/$file -newer $curweb/$file -exec echo ' updating ' s7webserver/$file \;
+    find $curdir/$file -newer $curweb/$file -exec cp $curdir/$file $curweb \;
+  endif
+end
+
+chdir sndweb
+foreach file (*)
+  if (-e $curweb/$file) then
+    diff -bcw $curweb/$file $sndweb/$file >> $curdir/hi
+    find $curweb/$file -newer $sndweb/$file -exec echo ' updating ' snd/s7webserver/$file \;
+    find $curweb/$file -newer $sndweb/$file -exec cp $curweb/$file $sndweb \;
+  endif
+end
+
+chdir s7webdir
+foreach file (*)
+  if (-e $curweb/$file) then
+    diff -bcw $curweb/$file $s7webdir/$file >> $curdir/hi
+    find $curweb/$file -newer $s7webdir/$file -exec echo ' updating ' s7/s7webserver/$file \;
+    find $curweb/$file -newer $s7webdir/$file -exec cp $curweb/$file $s7webdir \;
+  endif
+end
+
+cp $curdir/configure $snddir
+
+chdir curdir
+wc hi
