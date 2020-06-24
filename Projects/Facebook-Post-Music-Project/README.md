@@ -1,0 +1,6 @@
+A project to attempt, persue the nature of my Facebook post on modern music quality:
+
+
+Original Facebook Post:
+It sounds subjective but I feel and want to explore it in the objective domain. Prelude: I’ve been watching several documentaries on Music, music primarily of a 1960s origin. Thesis: My question that I want to explore, again, primarily or perhaps, artificially assuming an objective vantage, is, why, with all of our current technology, which leaves us somewhere between dripping within or totally consumed by, the absolute human spirit, why are we not producing not only equal but ultimately what should be better then, the music of that era? Why? Sincerely. With all that we have before us, we should always be producing not only a superset of what came before but a step above as well and, objectively, we’re not. On point of fact, we seem to be applying the / division operator in our modern art from what came before and, not only applying but, accepting it in an era when the maximum of our historical library is not only available but, available in a quality maximum - thank you to modern mathematics and a computer application of such principles. 
+Jim Morrison, Brian Wilson, John Lennon, Paul McCartney.
